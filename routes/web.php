@@ -27,9 +27,17 @@ Route::get('anasayfa',[AnasayfaController::class,'index'])
 Route::get('kategori/{slug_kategoriadi}',[KategoriController::class,'index'])
     ->name('kategori.index');
 
+//ürünler route
 Route::get('urun/{slug_urunadi}',[UrunController::class,'index'])
     ->name('urun.index');
 
+Route::post('urun-ara',[UrunController::class,'urunAra'])
+    ->name('urun_ara');
+
+Route::post('urun-ara',[UrunController::class,'urunAra'])
+    ->name('urun_ara');
+
+//sepet route
 Route::get('sepet',[SepetController::class,'index'])
     ->name('sepet.index');
 

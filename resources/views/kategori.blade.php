@@ -12,12 +12,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{$kategori->kategoriAdi}}</div>
                     <div class="panel-body">
-                        <h3>Alt Kategoriler</h3>
-                        <div class="list-group categories">
-                            @foreach($alt_kategori as $altKategori)
-                                <a href="{{route('kategori.index',$altKategori->slug)}}" class="list-group-item"><i class="fa fa-arrow-circle-right"></i> {{$altKategori->kategoriAdi}}</a>
-                            @endforeach
-                        </div>
+                        @if(count($alt_kategori) > 0)
+                            <h3>Alt Kategoriler</h3>
+                            <div class="list-group categories">
+                                @foreach($alt_kategori as $altKategori)
+                                    <a href="{{route('kategori.index',$altKategori->slug)}}" class="list-group-item"><i class="fa fa-arrow-circle-right"></i> {{$altKategori->kategoriAdi}}</a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="alert alert-danger p-3">
+                                Bu kategoride alt kategori yoktur
+                            </div>
+                        @endif
+
                         <h3>Fiyat Aralığı</h3>
                         <form>
                             <div class="form-group">
@@ -40,35 +47,25 @@
             </div>
             <div class="col-md-9">
                 <div class="products bg-content">
-                    Sırala
-                    <a href="#" class="btn btn-default">Çok Satanlar</a>
-                    <a href="#" class="btn btn-default">Yeni Ürünler</a>
-                    <hr>
                     <div class="row">
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
+                        @if(count($urunler) == 0)
+                            <div class="alert alert-danger p-3">
+                                Bu kategoride ürün yoktur
+                            </div>
+                        @else
+                            Sırala
+                            <a href="#" class="btn btn-default">Çok Satanlar</a>
+                            <a href="#" class="btn btn-default">Yeni Ürünler</a>
+                            <hr>
+                            @foreach($urunler as $urun)
+                                <div class="col-md-3 product">
+                                    <a href="{{route('urun.index',$urun->slug)}}"><img src="http://lorempixel.com/400/400/food/1">Ürün resmi</a>
+                                    <p><a href="{{route('urun.index',$urun->slug)}}">{{$urun->urunAdi}}</a></p>
+                                    <p class="price">{{$urun->fiyati}}$</p>
+                                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

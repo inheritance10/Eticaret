@@ -3,12 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\UrunDetay;
+use App\Models\Urun;
 use Illuminate\Http\Request;
 
 class AnasayfaController extends Controller
 {
     public function index(){
         $kategoriler = Kategori::whereRaw('ust_id is null')->get()->take(8);
-        return view('anasayfa',compact('kategoriler'));
+        $urunler_slider = UrunDetay::with('urun')->where('goster_slider',1)->take(5)->get();
+
+        $urunler_gunun_firsati = Urun::select('uruns.*')->
+            join('urun_detay','urun_detay.urun_id','uruns.id')
+            ->where('urun_detay.goster_gunun_firsati',1)
+            ->orderBy('updated_at','desc')
+            ->first();
+
+        //one cikanlar ,cok satanlar ,indirimli ürünleride gunun firsati sorugusu
+        //gibi çekebiliriz.Güncelleme tarihini göre.
+
+        $urunler_one_cikan = UrunDetay::with('urun')
+            ->where('goster_one_cikan',1)
+            ->take(4)->get();
+
+        $urunler_cok_satan = UrunDetay::with('urun')
+            ->where('goster_cok_satan',1)
+            ->take(4)->get();
+
+        $urunler_indirimli = UrunDetay::with('urun')
+            ->where('goster_indirimli',1)
+            ->take(4)->get();
+
+
+
+        return view('anasayfa',compact('kategoriler','urunler_slider','urunler_gunun_firsati','urunler_one_cikan','urunler_cok_satan','urunler_indirimli'));
     }
 }
