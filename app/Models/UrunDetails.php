@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UrunDetay extends Model
+class UrunDetails extends Model
 {
+
+
     use HasFactory;
-    protected $table = 'urun_detay';
+    protected $table = 'urun_details';
 
     public $timestamps = false;
 

@@ -34,8 +34,7 @@ Route::get('urun/{slug_urunadi}',[UrunController::class,'index'])
 Route::post('urun-ara',[UrunController::class,'urunAra'])
     ->name('urun_ara');
 
-Route::post('urun-ara',[UrunController::class,'urunAra'])
-    ->name('urun_ara');
+Route::get('urun-ara',[UrunController::class,'urunAra']);
 
 //sepet route
 Route::get('sepet',[SepetController::class,'index'])

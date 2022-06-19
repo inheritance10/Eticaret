@@ -18,10 +18,10 @@ class Urun extends Model
 
     public function kategoriler(){
         //çoka çok ilişki
-        return $this->belongsToMany('App\Models\Kategori','kategori_urun');
+        return $this->belongsToMany('App\Models\Kategori','kategori_uruns');
     }
 
     public function detay(){
-        return $this->hasOne('App\Models\UrunDetay');
+        return $this->hasOne('App\Models\UrunDetails');
     }
 }

@@ -10,9 +10,7 @@ class KategoriController extends Controller
     public function index($slug_kategoriadi){
         $kategori = Kategori::where('slug',$slug_kategoriadi)->firstOrFail();
         $alt_kategori = Kategori::where('ust_id',$kategori->id)->get();
-
-        $urunler = $kategori->urunler()->distinct()->get();
-
+        $urunler = $kategori->urunler()->paginate(4);
         return view('kategori',compact('kategori','alt_kategori','urunler'));
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('uruns')){
-            Schema::create('urun_detay', function (Blueprint $table) {
+        if(!Schema::hasTable('uruns')) {
+            Schema::create('urun_details', function (Blueprint $table) {
                 $table->id();
                 $table->integer('urun_id')->unsigned()->unique();
                 $table->boolean('goster_slider')->default(0);
@@ -26,7 +26,6 @@ return new class extends Migration
                 $table->foreign('urun_id')->references('id')->on('uruns')->onDelete('cascade');
             });
         }
-
     }
 
     /**
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('urun_detay');
+        Schema::dropIfExists('urun_details');
     }
 };

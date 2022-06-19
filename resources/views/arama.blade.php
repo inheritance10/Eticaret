@@ -32,7 +32,9 @@
                     </div>
                 @endforeach
             </div>
-            {{$urunler->links()}}
+            {{$urunler->appends(['aranan_urun' => old('aranan_urun')])->links()}}
+            <!--appends fonksiyonu ürün aranırken search inputundan sayfa değiştirince
+bile buradan aramaya devam eder tüm ürünlere gitmez-->
         </div>
     </div>
 

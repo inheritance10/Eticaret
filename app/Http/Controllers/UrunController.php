@@ -17,7 +17,7 @@ class UrunController extends Controller
         $aranan_urun = $request->aranan_urun;
         $urunler = Urun::where('urunAdi','like', "%$aranan_urun%")
             ->orWhere('aciklama' ,'like', "%$aranan_urun%")
-            ->paginate(2);
+            ->paginate(8);//sayfalandırma fonksiyonu(laravel bizim için kolaylık sağlıyor)
         $request->flash();
         return view('arama',compact('urunler'));
     }
