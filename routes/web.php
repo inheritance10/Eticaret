@@ -40,14 +40,18 @@ Route::get('urun-ara',[UrunController::class,'urunAra']);
 Route::get('sepet',[SepetController::class,'index'])
     ->name('sepet.index');
 
+//ODEME ROUTE
 Route::get('odeme',[OdemeController::class,'index'])
     ->name('odeme.index');
 
+//SİPARİŞLER ROUTE
 Route::get('siparisler',[SiparisController::class,'index'])
     ->name('siparisler.index');
 
 Route::get('siparisler/{id}',[SiparisController::class,'siparisDetay'])
     ->name('siparis-detay.index');
+
+//KULLANICI ROUTE
 
 Route::prefix('kullanici')->group(function (){
 
@@ -56,6 +60,9 @@ Route::prefix('kullanici')->group(function (){
 
     Route::get('kayitol',[KullaniciController::class,'kayitform'])
         ->name('kayitform.index');
+
+    Route::post('kayitol',[KullaniciController::class,'kayitol'])
+        ->name('kayitol');
 });
 
 
