@@ -54,8 +54,8 @@
                             </div>
                         @else
                             Sırala
-                            <a href="#" class="btn btn-default">Çok Satanlar</a>
-                            <a href="#" class="btn btn-default">Yeni Ürünler</a>
+                            <a href="?order=coksatanlar" class="btn btn-default">Çok Satanlar</a>
+                            <a href="?order=yeni" class="btn btn-default">Yeni Ürünler</a>
                             <hr>
                             @foreach($urunler as $urun)
                                 <div class="col-md-3 product">
@@ -67,6 +67,8 @@
                             @endforeach
                         @endif
                     </div>
+                    {{request()->has('order') ? $urunler->appends(['order' => request('order')])->links()
+: $urunler->links()}}
                 </div>
             </div>
         </div>
