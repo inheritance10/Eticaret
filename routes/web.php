@@ -51,10 +51,16 @@ Route::get('siparisler',[SiparisController::class,'index'])
 Route::get('siparisler/{id}',[SiparisController::class,'siparisDetay'])
     ->name('siparis-detay.index');
 
+
+Route::get('test/mail', function (){
+    $kullanici = \App\Models\Kullanici::find(1);
+
+    return new App\Mail\KullaniciKayitMail($kullanici);
+});
+
 //KULLANICI ROUTE
 
 Route::prefix('kullanici')->group(function (){
-
     Route::get('girisyap',[KullaniciController::class,'girisform'])
         ->name('girisform.index');
 
@@ -63,7 +69,12 @@ Route::prefix('kullanici')->group(function (){
 
     Route::post('kayitol',[KullaniciController::class,'kayitol'])
         ->name('kayitol');
+
+    Route::get('/aktiflestir/{anahtar}',[KullaniciController::class,'aktiflestir'])
+        ->name('aktiflestir');
 });
+
+
 
 
 

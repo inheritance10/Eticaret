@@ -13,6 +13,7 @@ class UrunController extends Controller
         return view('urun',compact('urun','kategoriler'));
     }
 
+
     public function urunAra(Request $request){
         $aranan_urun = $request->aranan_urun;
         $urunler = Urun::where('urunAdi','like', "%$aranan_urun%")
