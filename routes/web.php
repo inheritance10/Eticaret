@@ -70,17 +70,9 @@ Route::prefix('kullanici')->group(function (){
     Route::post('kayitol',[KullaniciController::class,'kayitol'])
         ->name('kayitol');
 
-    Route::get('/aktiflestir/{anahtar}',[KullaniciController::class,'aktiflestir'])
+    Route::get('/aktiflestir/{anahtar}/{id}',[KullaniciController::class,'aktiflestir'])
         ->name('aktiflestir');
 });
-
-
-
-
-
-
-
-
 
 
 

@@ -2,6 +2,16 @@
 @section('title','Anasayfa')
 
 @section('content')
+    @if(session()->has('hesapAktif'))
+        <script>
+            alertify.success('{{session('hesapAktif')}}')
+        </script>
+    @endif
+    @if(session()->has('hesapZatenAktif'))
+        <script>
+            alertify.warning('{{session('hesapZatenAktif')}}')
+        </script>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -106,4 +116,5 @@
             </div>
         </div>
     </div>
+
 @endsection

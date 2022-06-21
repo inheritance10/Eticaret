@@ -47,16 +47,26 @@ class KullaniciController extends Controller
          return redirect(route('anasayfa.index'));
     }
 
-    public function aktiflestir($anahtar){
-        $kullanici = Kullanici::
-        where('aktivasyonAnahtari',$anahtar)
-            ->first();
-        if(!isNull($kullanici)){
-            $kullanici->aktivasyonAnahtari = null;
-            $kullanici->aktifMi = 1;
-            $kullanici->save();
-            return redirect(route('anasayfa.index'))->with('hesapAktif','Kullanıcı kaydınız aktifleştirildi');
+    public function aktiflestir($anahtar,$id){
+        $kullanici = Kullanici::where('id',$id)->first();
+        if($kullanici->aktifMi == 1){
+            return redirect(route('anasayfa.index'))->with('hesapZatenAktif','Hesabınız zaten aktif durumda');
+        }else{
+            //kullanıcı aktivasyon anahtarına göre sorugu yapılır
+
+            //eğer bu anahtara sahip kullanıcı var ise hesap aktif edilir.
+            if(isNull($kullanici)){
+                $kullanici->aktivasyonAnahtari = null;
+                $kullanici->aktifMi = 1;
+                $kullanici->save();
+                return redirect(route('anasayfa.index'))->with('hesapAktif','Kullanıcı kaydınız aktifleştirildi');
+            }
         }
+
+
+
+
+
     }
 
 }
